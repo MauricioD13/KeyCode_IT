@@ -1,0 +1,39 @@
+// Parameters
+query = {"channel":"WhatsApp_Soporte","status":"Open"};
+orgID = 20096674714;
+newStatus = {"status":"On Hold","channel":"WhatsApp"};
+response = zoho.desk.searchRecords(orgID,"tickets",query,0,5,"deskautomationoperation00");
+if(response.size() > 0)
+{
+	data = Map(response);
+	tickets = data.get("data");
+	ticketNumbers = Collection();
+	updateTickets = Collection();
+	for each  ticket in tickets
+	{
+		ticketID = ticket.get("id");
+		ticketNumber = ticket.get("ticketNumber");
+		ticketNumbers.insert(ticketNumber);
+		updateTickets.insert(zoho.desk.update(orgID,"tickets",ticketID,newStatus,"deskautomationoperation00"));
+	}
+	if(updateTickets.size() >= 1)
+	{
+		sendmail
+		[
+			from :zoho.adminuserid
+			to :"mauricio.cuello@key-code.com"
+			subject :"[Zoho Desk] Clean queue: Success"
+			message :"Tickets Number: " + ticketNumbers + "       Update tickets: " + updateTickets.size()
+		]
+	}
+}
+else
+{
+	sendmail
+	[
+		from :zoho.adminuserid
+		to :"mauricio.cuello@key-code.com"
+		subject :"[Zoho Desk] Clean queue: Failed"
+		message :"The custom functions has failed to change the values of the tickes. Please review the function or the tickets in the queue WhatsApp_Soporte"
+	]
+}
