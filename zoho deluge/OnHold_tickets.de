@@ -25,14 +25,6 @@ if(response.size() > 0)
 			subject :"[Zoho Desk] Clean queue: Success"
 			message :"Tickets Number: " + ticketNumbers + "       Update tickets: " + updateTickets.size()
 		]
-	}else{
-			sendmail
-	[
-		from :zoho.adminuserid
-		to :"mauricio.cuello@key-code.com"
-		subject :"[Zoho Desk] Clean queue: Failed"
-		message :"The custom functions has failed to change the values of the tickes. Please review the function or the tickets in the queue WhatsApp_Soporte"
-	]
 	}
 }
 else
@@ -41,7 +33,7 @@ else
 	[
 		from :zoho.adminuserid
 		to :"mauricio.cuello@key-code.com"
-		subject :"[Zoho Desk] Clean queue: Queue Empty"
-		message :"The queue WhatsApp Soporte is empty"
+		subject :"[Zoho Desk] Clean queue: Failed"
+		message :"The custom functions has failed to change the values of the tickes. Please review the function or the tickets in the queue WhatsApp_Soporte"
 	]
 }
