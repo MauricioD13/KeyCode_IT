@@ -1,0 +1,21 @@
+file_content = input.Sales_from_Odoo.content;
+aux = file_content.toList("\n");
+for each  row_l in aux
+{
+	register = row_l.toList(";");
+	if(register.get(0).isEmpty() == false)
+	{
+		insert into Schema
+		[
+			Added_User=zoho.loginuser
+			Numero_de_pedido=register.get(0)
+			Nombre_del_cliente.first_name=register.get(1)
+			SN_0=register.get(2)
+			SN_1=register.get(3)
+			SN_21=register.get(4)
+			SN_3=register.get(4)
+			SN_4=register.get(5)
+			Multi_Line=register.get(6)
+		]
+	}
+}
