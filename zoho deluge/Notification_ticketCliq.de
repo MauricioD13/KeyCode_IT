@@ -10,12 +10,22 @@ for each  ticket in tickets
 	//Tickets Wagner 
 	if(ticket.get("assignee").get("id") == "161824000000218154")
 	{
-		ticketNumber = ticket.get("ticketNumber");
-		ticketID = ticket.get("id");
-		numPedido = ticket.get("cf").get("cf_numero_de_pedido");
-		tipoProblema = ticket.get("cf").get("cf_tipo_de_problema");
-		ticket_subject = ticket.get("subject");
-		priority = ticket.get("priority");
-		response = zoho.cliq.postToChannel("ticketspendientes",{"text":"Prioridad: " + "*" + priority + "*" + newLine + "Asunto: " + ticket_subject + newLine + "Número ticket: " + ticketNumber + newLine + "Status: Open" + newLine + "URL: " + "https://desk.zoho.eu/agent/keycode/key-code/tickets/details/" + ticketID},"deskcliq");
+		try 
+		{
+			ticketNumber = ticket.get("ticketNumber");
+			ticketID = ticket.get("id");
+			numPedido = ticket.get("cf").get("cf_numero_de_pedido");
+			tipoProblema = ticket.get("cf").get("cf_tipo_de_problema");
+			ticket_subject = ticket.get("subject");
+			priority = ticket.get("priority");
+			if(priority == "Medium" || priority == "High")
+			{
+				response = zoho.cliq.postToChannel("ticketspendientes",{"text":"Prioridad: " + "*" + priority + "*" + newLine + "Asunto: " + ticket_subject + newLine + "Número ticket: " + ticketNumber + newLine + "Status: Open" + newLine + "URL: " + "https://desk.zoho.eu/agent/keycode/key-code/tickets/details/" + ticketID},"deskcliq");
+			}
+		}
+		catch (e)
+		{
+			info e.message;
+		}
 	}
 }
