@@ -161,7 +161,9 @@ cython_debug/
 
 exported/
 for_import/
-norm_files/
+norm_files/exported_Odoo
+norm_files/exported_Zoho
+norm_files/*.csv
 .env/
 .env_wsl/
 env_vars_Odoo.py
@@ -169,3 +171,6 @@ env_vars_Zoho.py
 test.json
 Sales_toImport.csv
 Test_toImport.csv
+*.csv
+*.json
+Automatizacion
