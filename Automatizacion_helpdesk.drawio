@@ -1,0 +1,169 @@
+<mxfile host="app.diagrams.net" modified="2024-04-15T15:17:28.111Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36 OPR/108.0.0.0" etag="ggJzkfqqgwzegUc8VTxW" version="24.2.3" type="device">
+  <diagram name="Página-1" id="oniGfciFuHNIbGLf2qK1">
+    <mxGraphModel dx="1032" dy="1630" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ixAwQxixnzKbH4tugLL4-2" value="Database" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="320" y="220" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-3" value="Database&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="80.3" y="220" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="ixAwQxixnzKbH4tugLL4-4" target="ixAwQxixnzKbH4tugLL4-12" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="230" y="110" />
+              <mxPoint x="230" y="110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-36" value="API XMLRPC" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="ixAwQxixnzKbH4tugLL4-17" vertex="1" connectable="0">
+          <mxGeometry x="-0.0523" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-4" value="&lt;b&gt;Odoo&lt;/b&gt;" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" parent="1" vertex="1">
+          <mxGeometry x="89" y="100" width="42.599999999999994" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-5" value="&lt;b&gt;Zoho Desk&lt;/b&gt;" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" parent="1" vertex="1">
+          <mxGeometry x="518.7" y="110" width="42.599999999999994" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-6" value="Database" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="510" y="220" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.15;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="ixAwQxixnzKbH4tugLL4-3" target="ixAwQxixnzKbH4tugLL4-4" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="229" />
+              <mxPoint x="160" y="127" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.15;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="ixAwQxixnzKbH4tugLL4-4" target="ixAwQxixnzKbH4tugLL4-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="127" />
+              <mxPoint x="60" y="229" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.15;exitDx=0;exitDy=0;exitPerimeter=0;entryX=-0.009;entryY=0.525;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="ixAwQxixnzKbH4tugLL4-6" target="ixAwQxixnzKbH4tugLL4-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.15;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="ixAwQxixnzKbH4tugLL4-5" target="ixAwQxixnzKbH4tugLL4-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="137" />
+              <mxPoint x="590" y="229" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-12" value="&lt;b&gt;Zoho Creator&lt;/b&gt;" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Server_Desktop.svg;" parent="1" vertex="1">
+          <mxGeometry x="328.70000000000005" y="110" width="42.599999999999994" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.15;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="ixAwQxixnzKbH4tugLL4-12" target="ixAwQxixnzKbH4tugLL4-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="137" />
+              <mxPoint x="300" y="229" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.15;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1.024;entryY=0.525;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="ixAwQxixnzKbH4tugLL4-2" target="ixAwQxixnzKbH4tugLL4-12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.899;entryY=0.204;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" parent="1" source="ixAwQxixnzKbH4tugLL4-5" target="ixAwQxixnzKbH4tugLL4-12" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="121" />
+              <mxPoint x="480" y="121" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-37" value="Zoho API" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="ixAwQxixnzKbH4tugLL4-18" vertex="1" connectable="0">
+          <mxGeometry x="0.2221" y="8" relative="1" as="geometry">
+            <mxPoint x="14" y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-24" value="" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/computer_and_terminals/Personal_Computer_with_Server.svg;" parent="1" vertex="1">
+          <mxGeometry x="200" y="-30" width="62.400000000000006" height="62.400000000000006" as="geometry" />
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.005;entryY=0.449;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="ixAwQxixnzKbH4tugLL4-4" target="ixAwQxixnzKbH4tugLL4-24" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="100" y="-2" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.508;entryY=0.012;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="ixAwQxixnzKbH4tugLL4-24" target="ixAwQxixnzKbH4tugLL4-12" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="350" y="1" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-27" value="Debido a que el formato en el están los números de serie &quot;antiguos&quot; no es estándar hay que normalizarlos a mano. En el futuro, espero no sea necesario" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="110" y="-80" width="247.6" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" parent="1" source="ixAwQxixnzKbH4tugLL4-31" target="ixAwQxixnzKbH4tugLL4-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-39" value="Webhook" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="ixAwQxixnzKbH4tugLL4-34" vertex="1" connectable="0">
+          <mxGeometry x="-0.0737" y="3" relative="1" as="geometry">
+            <mxPoint x="27" y="22" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-31" value="&lt;b&gt;Bot WhatsApp&lt;/b&gt;" style="verticalLabelPosition=bottom;aspect=fixed;html=1;shape=mxgraph.salesforce.bots;" parent="1" vertex="1">
+          <mxGeometry x="440" y="-30" width="60" height="57" as="geometry" />
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.774;entryY=0.025;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;" parent="1" source="ixAwQxixnzKbH4tugLL4-31" target="ixAwQxixnzKbH4tugLL4-12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-38" value="Webhook" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="ixAwQxixnzKbH4tugLL4-33" vertex="1" connectable="0">
+          <mxGeometry x="0.2604" y="1" relative="1" as="geometry">
+            <mxPoint x="27" y="-50" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-40" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;width=14;endSize=6.22;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="469.86363636363626" y="-80" as="sourcePoint" />
+            <mxPoint x="469.5" y="-40" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-42" value="&lt;b&gt;Clientes&lt;/b&gt;" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/management_governance/My_Customers.svg;" parent="1" vertex="1">
+          <mxGeometry x="435.5" y="-166" width="69" height="56.00000000000001" as="geometry" />
+        </mxCell>
+        <mxCell id="ixAwQxixnzKbH4tugLL4-43" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;width=14;endSize=6.22;" parent="1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="470" y="-80" as="sourcePoint" />
+            <mxPoint x="470" y="-80" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L5erLRej4sfJGDLFcAGi-1" value="Tabla compañia" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;direction=east;" parent="1" vertex="1">
+          <mxGeometry x="160" y="310" width="141.3" height="90" as="geometry">
+            <mxRectangle x="188.7" y="340" width="110" height="30" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L5erLRej4sfJGDLFcAGi-2" value="Nombre" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="L5erLRej4sfJGDLFcAGi-1" vertex="1">
+          <mxGeometry y="30" width="141.3" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="L5erLRej4sfJGDLFcAGi-3" value="id compañia" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="L5erLRej4sfJGDLFcAGi-1" vertex="1">
+          <mxGeometry y="60" width="141.3" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="L5erLRej4sfJGDLFcAGi-5" value="Tabla de contactos" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="357.6" y="310" width="140" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="L5erLRej4sfJGDLFcAGi-6" value="Nombre" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="L5erLRej4sfJGDLFcAGi-5" vertex="1">
+          <mxGeometry y="30" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="L5erLRej4sfJGDLFcAGi-7" value="Telefono" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="L5erLRej4sfJGDLFcAGi-5" vertex="1">
+          <mxGeometry y="60" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="L5erLRej4sfJGDLFcAGi-8" value="Mail" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="L5erLRej4sfJGDLFcAGi-5" vertex="1">
+          <mxGeometry y="90" width="140" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
