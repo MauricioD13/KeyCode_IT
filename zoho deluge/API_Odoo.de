@@ -1,0 +1,38 @@
+// Login credentials (replace with your actual Odoo credentials)
+username = "your_odoo_username";
+password = "your_odoo_password";
+
+// Odoo API endpoint URL (replace with your Odoo instance URL)
+odooUrl = "https://keycode-devel27-12386189.dev.odoo.com/";
+
+// Function to be called (assuming Odoo v10)
+odooMethod = "execute";  // Method name might differ for newer Odoo versions
+
+subscriptionIds = [123, 456, 789];  // Replace with your subscription IDs
+
+// Fields to retrieve from subscription model
+odooFields = ["name", "date_start", "date", "stage_id"];
+
+// Data for the request (database name, user ID, password, model, domain, fields)
+odooParams = [
+  "your_odoo_database",
+  username,
+  password,
+  "sale.subscription",
+  [["id", "in", subscriptionIds]],  // Filter by subscription IDs
+  odooFields,
+];
+
+// Make the request using ZOHO.CREATOR.API.call
+var response = ZOHO.CREATOR.API.call(odooUrl, odooMethod, odooParams);
+
+// Process the response (assuming successful request)
+if (response.getStatusCode() == 200) {
+  // Parse the XML response (implementation depends on Zoho Deluge's XML handling capabilities)
+  var xmlData = response.getRawContent();
+  // ... Parse the XML data to extract subscription information and populate your Zoho Deluge variables ...
+} else {
+  // Handle API call failure (e.g., invalid credentials, network errors)
+  var errorMessage = response.getErrorMessage();
+  // ... Handle error based on the error message ...
+}
