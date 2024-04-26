@@ -1,33 +1,46 @@
 // Parameters
-query = {"channel":"WhatsApp_Soporte","status":"Open"};
+query_0 = {"channel":"Soporte_Wagner","status":"Open"};
+query_1 = {"channel":"Soporte_Luis","status":"Open"};
 orgID = 20096674714;
 newStatus = {"status":"On Hold","channel":"WhatsApp"};
-response = zoho.desk.searchRecords(orgID,"tickets",query,0,5,"deskautomationoperation00");
-if(response.size() > 0)
+response_0 = zoho.desk.searchRecords(orgID,"tickets",query_0,0,5,"deskautomationoperation00");
+response_1 = zoho.desk.searchRecords(orgID,"tickets",query_1,0,5,"deskautomationoperation00");
+if(response_0.size() >= 0 || response_1.size() >= 0)
 {
-	data = Map(response);
-	tickets = data.get("data");
-	ticketNumbers = Collection();
-	updateTickets = Collection();
-	for each  ticket in tickets
+	data_0 = Map(response_0);
+	tickets_0 = data_0.get("data");
+	data_1 = Map(response_1);
+	tickets_1 = data_1.get("data");
+	ticketNumbers_0 = Collection();
+	updateTickets_0 = Collection();
+	ticketNumbers_1 = Collection();
+	updateTickets_1 = Collection();
+	for each  ticket in tickets_0
 	{
 		ticketID = ticket.get("id");
 		ticketNumber = ticket.get("ticketNumber");
-		ticketNumbers.insert(ticketNumber);
-		updateTickets.insert(zoho.desk.update(orgID,"tickets",ticketID,newStatus,"deskautomationoperation00"));
+		ticketNumbers_0.insert(ticketNumber);
+		updateTickets_0.insert(zoho.desk.update(orgID,"tickets",ticketID,newStatus,"deskautomationoperation00"));
 	}
-	if(updateTickets.size() >= 1)
+	for each  ticket in tickets_1
+	{
+		ticketID = ticket.get("id");
+		ticketNumber = ticket.get("ticketNumber");
+		ticketNumbers_1.insert(ticketNumber);
+		updateTickets_1.insert(zoho.desk.update(orgID,"tickets",ticketID,newStatus,"deskautomationoperation00"));
+	}
+	if(updateTickets_0.size() >= 1 || updateTickets_1.size() >= 0)
 	{
 		sendmail
 		[
 			from :zoho.adminuserid
 			to :"mauricio.cuello@key-code.com"
 			subject :"[Zoho Desk] Clean queue: Success"
-			message :"Tickets Number: " + ticketNumbers + "       Update tickets: " + updateTickets.size()
+			message :"<p> Tickets Number Wagner: " + ticketNumbers_0 + "       Update tickets Wagner: " + updateTickets_0.size() + "</p>" + "<p> Tickets Number Luis: " + ticketNumbers_1 + "       Update tickets Luis: " + updateTickets_1.size() + "</p>"
 		]
 	}
 }
-else
+else if(response_0.size() != 0 || response_1.size() != 0)
 {
 	sendmail
 	[
