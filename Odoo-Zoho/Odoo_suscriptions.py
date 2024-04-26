@@ -8,7 +8,7 @@ def get_all_subscriptions():
     """
     # Search for all subscription records in Odoo
     subscription_ids = models.execute_kw(
-        db, uid, password, "sale.subscription", "search", [[]]
+        db, uid, password, "sale.subscription", "search", [[["stage_id", "=", 2]]]
     )
     print(subscription_ids)
     # Read the subscription data
@@ -19,7 +19,7 @@ def get_all_subscriptions():
         "sale.subscription",
         "read",
         [subscription_ids],
-        {"fields": ["name", "date_start", "date", "stage_id"]},
+        {"fields": ["name", "date_start", "date", "stage_id", "uuid"]},
     )
 
     return subscription_data
@@ -49,4 +49,22 @@ if uid:
         print(f"Subscription Name: {subscription['name']}")
         print(f"Start Date: {subscription['date_start']}")
         print(f"End Date: {subscription['date']}")
-        print(f"Subscription State: {subscription['stage_id']}\n")
+        print(f"Subscription State: {subscription['stage_id']}")
+        print(f"Token: {subscription['uuid']}")
+        print("---------------------------------------")
+
+"""
+curl -X POST \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "method": "<method>",
+    "params": {
+      "service": "<service>",
+      "method": "<inner_method>",
+      "args": [<arguments>]
+    },
+    "id": '"$(($(RANDOM % 1000000001))')"
+  }' \
+  <url>
+"""
