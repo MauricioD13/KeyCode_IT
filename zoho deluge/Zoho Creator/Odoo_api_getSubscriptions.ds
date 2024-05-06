@@ -1,0 +1,42 @@
+list Odoo.get_subscriptions(int stage_id)
+{
+	//Stage_id
+	//1 -> Draft
+	//2 -> In progress
+	//3 -> Closed
+	odoo_vars = Map();
+	odoo_vars = thisapp.Odoo.login_uid();
+	// SECOND REQUEST: Subscriptions IDs
+	odoo_model = "sale.subscription";
+	odoo_action = "search_read";
+	domain = {{"stage_id","=",stage_id}};
+	fields = {"uuid","name","date_start","date","partner_id"};
+	// ARGUMENTS
+	args = {odoo_vars.get("odoo_db"),odoo_vars.get("uid").toString(),odoo_vars.get("odoo_apikey"),odoo_model,odoo_action,domain,fields};
+	// PARAMETERS
+	params = Map();
+	params.put("args",args);
+	params.put("service","object");
+	params.put("method","execute");
+	// JSON
+	json_data = Map();
+	json_data.put("jsonrpc","2.0");
+	json_data.put("method","call");
+	json_data.put("params",params);
+	response = invokeurl
+	[
+		url :odoo_vars.get("odoo_url")
+		type :POST
+		parameters:json_data.toString()
+		headers:odoo_vars.get("headers_data")
+	];
+	try 
+	{
+		subs = response.get("result").toList();
+	}
+	catch (e)
+	{
+		info e;
+	}
+	return List(subs);
+}
