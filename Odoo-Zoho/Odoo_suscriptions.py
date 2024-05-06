@@ -8,7 +8,7 @@ def get_all_subscriptions():
     """
     # Search for all subscription records in Odoo
     subscription_ids = models.execute_kw(
-        db, uid, password, "sale.subscription", "search", [[["stage_id", "=", 2]]]
+        db, uid, password, "salesubscription", "search", [[["stage_id", "=", 2]]]
     )
     print(subscription_ids)
     # Read the subscription data

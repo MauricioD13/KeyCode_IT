@@ -9,6 +9,7 @@ if uid:
     # Create a connection to the model
     models = client.ServerProxy(f"{odoo_url}xmlrpc/2/object")
     # Search for the quotation number in Odoo
+    print("Aqui voy auth")
     access_rights = models.execute_kw(
         db,
         uid,
@@ -18,6 +19,7 @@ if uid:
         ["read"],
         {"raise_exception": False},
     )
+    print("Aqui voy permisos")
     if access_rights == True:
         records = models.execute_kw(
             db,
