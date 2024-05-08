@@ -9,8 +9,10 @@ list Odoo.get_subscriptions(int stage_id)
 	// SECOND REQUEST: Subscriptions IDs
 	odoo_model = "sale.subscription";
 	odoo_action = "search_read";
-	domain = {{"stage_id","=",stage_id}};
-	fields = {"uuid","name","date_start","date","partner_id"};
+	//Fetch records from the last 5 days
+	currentDate = today.subday(5).toString("yyyy-MM-dd");
+	domain = {{"create_date",">=",currentDate}};
+	fields = {"uuid","name","date_start","date","partner_id","stage_id"};
 	// ARGUMENTS
 	args = {odoo_vars.get("odoo_db"),odoo_vars.get("uid").toString(),odoo_vars.get("odoo_apikey"),odoo_model,odoo_action,domain,fields};
 	// PARAMETERS

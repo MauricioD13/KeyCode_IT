@@ -1,0 +1,71 @@
+string Odoo.Update_records()
+{
+	subs = thisapp.Odoo.get_subscriptions(2);
+	token_zoho = Data_input[ID_Suscripcion != 0].Token.getAll();
+	existing_subs = List();
+	new_subs = List();
+	for each index idx in subs
+	{
+		confirm = token_zoho.contains(subs.get(idx).get("uuid"));
+		if(confirm == true)
+		{
+			existing_subs.add(subs.get(idx));
+		}
+		else
+		{
+			if(subs.get(idx).get("stage_id").get(1) != "Closed")
+			{
+				new_subs.add(subs.get(idx));
+			}
+		}
+	}
+	response_insert = Collection();
+	// NEW SUBSCRIPTIONS
+	for each  subscription in new_subs
+	{
+		partner_id = subscription.get("partner_id");
+		stage_id = subscription.get("stage_id");
+		try 
+		{
+			res = insert into Data_input
+			[
+				ID_Cliente=partner_id.get(0)
+				Nombre_cliente=partner_id.get(1)
+				ID_Suscripcion=subscription.get("id")
+				Nombre_suscripcion=subscription.get("name")
+				Fecha_inicio=subscription.get("date_start").toDate("yy-MM-d")
+				Fecha_fin=subscription.get("date").toDate("yy-MM-d")
+				Token=subscription.get("uuid")
+				Estado=stage_id.get(1)
+				Added_User=zoho.loginuser
+			];
+			response_insert.insert(res);
+		}
+		catch (e)
+		{
+			info e;
+		}
+	}
+	//EXISTING SUBSCRIPTIONS
+	for each  sub_row in existing_subs
+	{
+		sub = Data_input[Token == sub_row.get("uuid")];
+		stage_id_1 = sub_row.get("stage_id").get(1);
+		end_date = sub_row.get("date").toDate("yy-MM-d");
+		if(sub.Estado != stage_id_1)
+		{
+			sub.Estado=stage_id_1;
+			info "Estado actualizado";
+		}
+		else if(sub.Fecha_fin != end_date)
+		{
+			info "Fecha actualizada";
+			sub.Fecha_fin=end_date;
+		}
+		if(sub.Estado == "Closed" && sub.Fecha_fin.addDay(5) < today)
+		{
+			delete from Data_input[Token == sub_row.get("uuid")];
+		}
+	}
+	return response_insert.get(0);
+}
