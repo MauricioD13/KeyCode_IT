@@ -5,27 +5,45 @@ tickets_open = zoho.desk.searchRecords(orgID,"tickets",query,0,5,"deskautomation
 data = Map(tickets_open);
 tickets = data.get("data");
 ticketCollection = Collection();
-for each  ticket in tickets
+info tickets;
+if(tickets.size() > 0)
 {
-	//Tickets Wagner 
-	if(ticket.get("assignee").get("id") == "161824000000218154")
+	for each  ticket in tickets
 	{
-		try 
+		//Tickets Wagner 
+		if(ticket.get("assignee").get("id") == "161824000000218154")
 		{
-			ticketNumber = ticket.get("ticketNumber");
-			ticketID = ticket.get("id");
-			numPedido = ticket.get("cf").get("cf_numero_de_pedido");
-			tipoProblema = ticket.get("cf").get("cf_tipo_de_problema");
-			ticket_subject = ticket.get("subject");
-			priority = ticket.get("priority");
-			if(priority == "Medium" || priority == "High")
+			try 
 			{
+				ticketNumber = ticket.get("ticketNumber");
+				ticketID = ticket.get("id");
+				numPedido = ticket.get("cf").get("cf_numero_de_pedido");
+				tipoProblema = ticket.get("cf").get("cf_tipo_de_problema");
+				ticket_subject = ticket.get("subject");
+				priority = ticket.get("priority");
 				response = zoho.cliq.postToChannel("ticketspendientes",{"text":"Prioridad: " + "*" + priority + "*" + newLine + "Asunto: " + ticket_subject + newLine + "Número ticket: " + ticketNumber + newLine + "Status: Open" + newLine + "URL: " + "https://desk.zoho.eu/agent/keycode/key-code/tickets/details/" + ticketID},"deskcliq");
 			}
+			catch (e)
+			{
+				info e;
+			}
 		}
-		catch (e)
+		else if(ticket.get("assignee").get("id") == "161824000000280001")
 		{
-			info e.message;
+			try 
+			{
+				ticketNumber = ticket.get("ticketNumber");
+				ticketID = ticket.get("id");
+				numPedido = ticket.get("cf").get("cf_numero_de_pedido");
+				tipoProblema = ticket.get("cf").get("cf_tipo_de_problema");
+				ticket_subject = ticket.get("subject");
+				priority = ticket.get("priority");
+				response = zoho.cliq.postToChannel("ticketspendientesl",{"text":"Prioridad: " + "*" + priority + "*" + newLine + "Asunto: " + ticket_subject + newLine + "Número ticket: " + ticketNumber + newLine + "Status: Open" + newLine + "URL: " + "https://desk.zoho.eu/agent/keycode/key-code/tickets/details/" + ticketID},"deskcliq");
+			}
+			catch (e)
+			{
+				info e;
+			}
 		}
 	}
 }
