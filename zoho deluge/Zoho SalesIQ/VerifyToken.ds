@@ -1,0 +1,14 @@
+token_bot = session.get("token").get("value");
+query = "Token==\"" + token_bot + "\"";
+verification = Map();
+response = zoho.creator.getRecords("keycode","customer-support","Data_input_Report",query,1,2,"salesiqcreator");
+info response;
+if(response.get("data").get(0).get("Estado") == "In Progress")
+{
+	verification.put("verification","true");
+}
+else
+{
+	verification.put("verification","false");
+}
+return verification;

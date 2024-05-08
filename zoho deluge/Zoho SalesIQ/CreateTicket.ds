@@ -1,0 +1,24 @@
+departmentID = "161824000000007061";
+// Key Code
+layout = "Key Code";
+subject_ticket = session.get("subject").get("meta").get("value");
+status = "Open";
+tipo_de_problema = session.get("problemType").get("meta").get("value");
+phone = session.get("phone").get("meta").get("value");
+phone = "*" + phone;
+orgID = 20096674714;
+query = {"mobile":phone};
+response_contact = zoho.desk.searchRecords(orgID,"contacts",query,0,10,"salesiqzohodesk");
+info response_contact;
+if (response_contact.size() > 0){
+	contactID = response_contact.get("data").get(0);
+	contactID = contactID.get("id");
+	content = {"cf":{"cf_tipo_de_problema":tipo_de_problema},"subject":subject_ticket,"channel":"WhatsApp","description":"Sample Ticket","departmentId":departmentID,"contactId":contactID,"language":"Spanish","priority":"Low","status":status,"phone":phone};
+	response = zoho.desk.create(orgID,"tickets",content,"salesiqzohodesk");
+info response_contact;
+
+return {"Response: ":response_contact};
+}else{
+	info "contacto no encontrado";
+	return {"Response: ":"Contact not found"};
+	}
