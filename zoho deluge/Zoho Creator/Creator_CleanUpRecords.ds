@@ -1,0 +1,5 @@
+string Odoo.CleanUpRecords()
+{
+	delete from Data_input[Fecha_fin <= today];
+	return "Registros con fecha fin mayor a hoy han sido eliminados";
+}
