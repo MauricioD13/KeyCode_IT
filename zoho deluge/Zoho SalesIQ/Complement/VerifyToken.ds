@@ -1,0 +1,19 @@
+token_bot = session.get("token").get("value");
+query = "Token==\"" + token_bot + "\"";
+output = Map();
+response = zoho.creator.getRecords("keycode","customer-support","Data_input_Report",query,1,2,"salesiqcreator");
+subscription = response.get("data").get(0);
+if(subscription.get("Estado") == "In Progress")
+{
+	output.put("verification","true");
+	nombreCliente = subscription.get("Nombre_cliente");
+	output.put("nombreCliente",nombreCliente);
+	output.put("odooID",subscription.get("ID_Cliente"));
+	replies = {{"text":"Your name","field_name":"siq_name"}};
+	output.put("replies",replies);
+}
+else
+{
+	output.put("verification","false");
+}
+return output;

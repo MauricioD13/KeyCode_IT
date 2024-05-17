@@ -1,0 +1,18 @@
+contact_info = session.get("contactOdoo").get("meta").get("value");
+contactID = session.get("contactID").get("meta").get("value");
+// VARIABLES
+departmentID = "161824000000007061";
+layout = "Key Code";
+status = "Open";
+orgID = 20096674714;
+contact_params = Map();
+//161824000001514341
+/*"{"id":00010,"name":"Test SalesIQ","type":"contact","phone":"61212312312","email":"nekal15399@qiradio.com","user_id":[44014,"Marilin"],"property_product_pricelist":[2539,"NEW OFERTAS (EUR)"]}"*/
+contact_params.put("accountName",contact_info.get("name"));
+contact_params.put("email",contact_info.get("email"));
+contact_params.put("phone",contact_info.get("phone"));
+contact_params.put("cf",{"cf_odoo_id":contact_info.get("id"),"cf_comercial":contact_info.get("user_id").get(1),"cf_verificado_odoo":"true"});
+response_creation = zoho.desk.create(orgID,"accounts",contact_params,"salesiqzohodesk");
+accountID = response_creation.get("id");
+relate_contact = zoho.desk.update(orgID,"contacts",contactID,{"accountId":accountID},"salesiqzohodesk");
+return {"response":relate_contact};

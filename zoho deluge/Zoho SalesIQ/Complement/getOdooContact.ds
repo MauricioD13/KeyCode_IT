@@ -1,0 +1,64 @@
+// VARIABLES
+odoo_vars = Map();
+odoo_vars.put("odoo_url","");
+odoo_vars.put("odoo_json","");
+odoo_vars.put("odoo_service","");
+odoo_vars.put("odoo_db","");
+odoo_vars.put("user","");
+odoo_vars.put("odoo_apikey","");
+contactName = session.get("contactName").get("meta").get("value");
+// FIRST REQUEST: Obtain the login id
+// HEADERS
+headers_data = Map();
+headers_data.put("Content-Type","application/json");
+headers_data.put("Accept","*/*");
+headers_data.put("Accept-Encoding","gzip,deflate,br");
+headers_data.put("Connection","keep-alive");
+// PARAMETERS
+args = {odoo_vars.get("odoo_db"),odoo_vars.get("user"),odoo_vars.get("odoo_apikey")};
+params = Map();
+params.put("service","common");
+params.put("method","login");
+params.put("args",args);
+json_data = Map();
+json_data.put("jsonrpc","2.0");
+json_data.put("method","call");
+json_data.put("params",params);
+response = invokeurl
+[
+	url :odoo_vars.get("odoo_url")
+	type :POST
+	parameters:json_data.toString()
+	headers:headers_data
+];
+uid = response.get("result");
+// SECOND REQUEST: Search read contact
+odoo_vars.put("uid",uid);
+odoo_vars.put("headers_data",headers_data);
+// Get contact
+odoo_model = "res.partner";
+odoo_action = "search_read";
+// DOMAIN: Search
+domain = {{"name","=",contactName}};
+fields = {"name","type","phone","email","user_id","property_product_pricelist"};
+// ARGUMENTS
+args = {odoo_vars.get("odoo_db"),odoo_vars.get("uid").toString(),odoo_vars.get("odoo_apikey"),odoo_model,odoo_action,domain,fields};
+// PARAMETERS
+params = Map();
+params.put("args",args);
+params.put("service","object");
+params.put("method","execute");
+// JSON
+json_data = Map();
+json_data.put("jsonrpc","2.0");
+json_data.put("method","call");
+json_data.put("params",params);
+response = invokeurl
+[
+	url :odoo_vars.get("odoo_url")
+	type :POST
+	parameters:json_data.toString()
+	headers:odoo_vars.get("headers_data")
+];
+result = response.get("result").get(0).toString();
+return {"contact":result};
