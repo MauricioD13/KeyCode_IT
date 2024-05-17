@@ -26,7 +26,15 @@ def extract_info_from_csv(file_path_Zoho, file_path_Odoo):
         lines = 0
         mobiles_zoho = []
         writer.writerow(
-            ["Nombre de contacto", "mobile", "mail", "pais", "Verificado Odoo"]
+            [
+                "Nombre de contacto",
+                "mobile",
+                "mail",
+                "pais",
+                "Verificado Odoo",
+                "Tarifa",
+                "Odoo ID",
+            ]
         )
         for row in reader_zoho:
             mobiles_zoho.append(row["Mobile"])
@@ -42,20 +50,26 @@ def extract_info_from_csv(file_path_Zoho, file_path_Odoo):
                     text = row_odoo["Nombre mostrado"].lower()
                     row_empty = False
                     row_name = False
-                    if not any(keyword in text for keyword in keywords):
-                        row_name = True
-                    if row_odoo["Telefono"] == "":
-                        row_empty = True
-                    if row_name == True and row_empty == False:
-                        writer.writerow(
-                            [
-                                row_odoo["Nombre mostrado"],
-                                f"{mobile}",
-                                row_odoo["Correo electronico"],
-                                row_odoo["Pais"],
-                                "true",
-                            ]
-                        )
+                    try:
+                        odoo_id = row_odoo["ID"].split("_")[6]
+                        if not any(keyword in text for keyword in keywords):
+                            row_name = True
+                        if row_odoo["Telefono"] == "":
+                            row_empty = True
+                        if row_name == True and row_empty == False:
+                            writer.writerow(
+                                [
+                                    row_odoo["Nombre mostrado"],
+                                    f"{mobile}",
+                                    row_odoo["Correo electronico"],
+                                    row_odoo["Pais"],
+                                    "true",
+                                    row_odoo["Tarifa"],
+                                    odoo_id,
+                                ]
+                            )
+                    except IndexError:
+                        continue
 
                     counter += 1
         return counter, lines
