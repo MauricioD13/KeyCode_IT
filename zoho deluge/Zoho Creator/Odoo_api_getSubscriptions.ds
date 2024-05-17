@@ -11,7 +11,8 @@ list Odoo.get_subscriptions(int stage_id)
 	odoo_action = "search_read";
 	//Fetch records from the last 5 days
 	currentDate = today.subday(5).toString("yyyy-MM-dd");
-	domain = {{"create_date",">=",currentDate}};
+	// The other condition is for the subs that suppose to be closed but Odoo did not automatically close
+	domain = {{"create_date",">=",currentDate},{"date",">=",today}};
 	fields = {"uuid","name","date_start","date","partner_id","stage_id"};
 	// ARGUMENTS
 	args = {odoo_vars.get("odoo_db"),odoo_vars.get("uid").toString(),odoo_vars.get("odoo_apikey"),odoo_model,odoo_action,domain,fields};
@@ -40,5 +41,6 @@ list Odoo.get_subscriptions(int stage_id)
 	{
 		info e;
 	}
+	
 	return List(subs);
 }
