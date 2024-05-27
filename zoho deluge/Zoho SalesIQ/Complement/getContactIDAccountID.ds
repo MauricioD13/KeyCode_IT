@@ -4,51 +4,49 @@ layout = "Key Code";
 clientName = session.get("name").get("meta").get("value");
 status = "Open";
 orgID = 20096674714;
-try 
+query_account = {"accountName":clientName};
+// Search account from client name
+response_account = zoho.desk.searchRecords(orgID,"accounts",query_account,0,3,"salesiqzohodesk");
+query = {"lastName":clientName};
+if(response_account.isEmpty() == false)
 {
-	query_account = {"accountName":clientName};
-	// Search account from client name
-	response_account = zoho.desk.searchRecords(orgID,"accounts",query_account,0,3,"salesiqzohodesk");
+	// Account exists
 	account_id = response_account.get("data").get(0).get("id");
-	if(response_account.isEmpty() == false)
+	Odoo_ID = response_account.get("data").get(0).get("cf").get("cf_odoo_id");
+	query = {"lastName":clientName};
+	// Search contact from client name
+	response_contact = zoho.desk.searchRecords(orgID,"contacts",query,0,3,"salesiqzohodesk");
+	if(response_contact.isEmpty() == false)
 	{
-		// Account exists
-		query = {"lastName":clientName};
-		// Search contact from client name
-		response_contact = zoho.desk.searchRecords(orgID,"contacts",query,0,3,"salesiqzohodesk");
-		if(response_contact.isEmpty() == false)
-		{
-			// Contact exists
-			contactID = response_contact.get("data").get(0).get("id");
-			return {"contactID":contactID,"accountID":account_id,"contactExists":"true","accountExists":"true"};
-		}
-		else
-		{
-			// Contact don´t exists
-			return {"contactID":"0","accountID":"0","contactExists":"false","accountExists":"true"};
-		}
+		// Contact exists
+		contactID = response_contact.get("data").get(0).get("id");
+		Odoo_ID = response_contact.get("data").get(0).get("cf").get("cf_odoo_id");
+		info response_contact;
+		return {"contactID":contactID,"accountID":account_id,"contactExists":"true","accountExists":"true","odooID":Odoo_ID};
 	}
 	else
 	{
-		// Account don´t exists
-		// Search contact from client name
-		response_contact = zoho.desk.searchRecords(orgID,"contacts",query,0,3,"salesiqzohodesk");
-		if(response_contact.isEmpty() == false)
-		{
-			// Contact exists
-			contactID = response_contact.get("data").get(0).get("id");
-			return {"contactID":contactID,"accountID":account_id,"contactExists":"true","accountExists":"true"};
-		}
-		else
-		{
-			// Neither contact nor account exists
-			return {"contactID":"0","accountID":"0","contactExists":"false","accountExists":"false"};
-		}
+		// Contact don´t exists
+		return {"contactID":"0","accountID":account_id,"contactExists":"false","accountExists":"true","odooID":Odoo_ID};
 	}
 }
-catch (e)
+else
 {
-	info e.message;
-	return {"contactID":"0","contactExists":"false","accountExists":"false"};
+	// Account don´t exists
+	// Search contact from client name
+	query = {"lastName":clientName};
+	response_contact = zoho.desk.searchRecords(orgID,"contacts",query,0,3,"salesiqzohodesk");
+	if(response_contact.isEmpty() == false)
+	{
+		// Contact exists
+		contactID = response_contact.get("data").get(0).get("id");
+		Odoo_ID = response_contact.get("data").get(0).get("cf").get("cf_odoo_id");
+		return {"contactID":contactID,"accountID":"0","contactExists":"true","accountExists":"false","odoo_ID":Odoo_ID};
+	}
+	else
+	{
+		// Neither contact nor account exists
+		return {"contactID":"0","accountID":"0","contactExists":"false","accountExists":"false","odooID":"0"};
+	}
 }
-return {"contactID":"0","contactExists":"false","accountExists":"false"};
+return {"contactID":"0","contactExists":"false","accountExists":"false","odooID":"0"};

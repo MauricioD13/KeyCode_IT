@@ -1,11 +1,11 @@
 // VARIABLES
 odoo_vars = Map();
-odoo_vars.put("odoo_url","");
-odoo_vars.put("odoo_json","");
-odoo_vars.put("odoo_service","");
-odoo_vars.put("odoo_db","");
-odoo_vars.put("user","");
-odoo_vars.put("odoo_apikey","");
+odoo_vars.put("odoo_url","<url>");
+odoo_vars.put("odoo_json","login");
+odoo_vars.put("odoo_service","common");
+odoo_vars.put("odoo_db","<db>");
+odoo_vars.put("user","<user>");
+odoo_vars.put("odoo_apikey","<api_key>");
 contactName = session.get("contactName").get("meta").get("value");
 // FIRST REQUEST: Obtain the login id
 // HEADERS
