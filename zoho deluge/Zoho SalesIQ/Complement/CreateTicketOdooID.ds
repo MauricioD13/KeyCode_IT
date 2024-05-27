@@ -1,0 +1,29 @@
+subject_ticket = session.get("subject").get("meta").get("value");
+tipo_de_problema = session.get("problemType").get("meta").get("value");
+odoo_id = session.get("odooID").get("meta").get("value");
+visitorID = session.get("visitorID").get("meta").get("value");
+// Key Code
+departmentID = "161824000000007061";
+layout = "Key Code";
+status = "Open";
+orgID = 20096674714;
+custom_query = "cf_odoo_id:" + odoo_id;
+query = {"customField1":custom_query};
+response_contact = zoho.desk.searchRecords(orgID,"contacts",query,0,2,"salesiqzohodesk");
+output = Map();
+if(response_contact.get("errorCode").size() <= 0)
+{
+	contactID = response_contact.get("data").get(0).get("id");
+	chatURL = "https://salesiq.zoho.eu/keycode/mychats/" + visitorID.toString();
+	content = {"cf":{"cf_tipo_de_problema":tipo_de_problema,"cf_chat_url":chatURL},"subject":subject_ticket,"channel":"WhatsApp","description":"Chat:" + chatURL,"departmentId":departmentID,"contactId":contactID,"language":"Spanish","priority":"Low","status":status,"assigneeId":"161824000000092001"};
+	response = zoho.desk.create(orgID,"tickets",content,"salesiqzohodesk");
+	output.put("mail",response_contact.get("data").get(0).get("email"));
+	output.put("ticketNumber",response.get("ticketNumber"));
+	output.put("clientName",response_contact.get("data").get(0).get("name"));
+	return output;
+}
+else
+{
+	output.put("ticketNumber","N/A");
+	return output;
+}

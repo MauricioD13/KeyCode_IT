@@ -1,0 +1,21 @@
+subject_ticket = session.get("subject").get("meta").get("value");
+tipo_de_problema = session.get("problemType").get("meta").get("value");
+contactID = session.get("contactID").get("meta").get("value");
+visitorID = session.get("visitorID").get("meta").get("value");
+//contactID = "161824000001780457";
+//visitorID = "122225000000124019";
+// Key Code
+departmentID = "161824000000007061";
+layout = "Key Code";
+status = "Open";
+orgID = 20096674714;
+output = Map();
+contact_info = zoho.desk.getRecordById(orgID,"contacts",contactID,"salesiqzohodesk");
+info contact_info;
+chatURL = "https://salesiq.zoho.eu/keycode/mychats/" + visitorID.toString();
+content = {"cf":{"cf_tipo_de_problema":tipo_de_problema,"cf_chat_url":chatURL},"subject":subject_ticket,"channel":"Chat","departmentId":departmentID,"contactId":contactID,"language":"Spanish","priority":"Low","status":status,"channel":"Chat","source":{"type":"SYSTEM"}};
+response = zoho.desk.create(orgID,"tickets",content,"salesiqzohodesk");
+output.put("ticketNumber",response.get("ticketNumber"));
+output.put("clientName",contact_info.get("lastName"));
+output.put("mail",contact_info.get("email"));
+return output;

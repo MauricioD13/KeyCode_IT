@@ -1,0 +1,22 @@
+contact_info = session.get("contactOdoo").get("meta").get("value");
+// To only create a contact the contactID must be in "false"
+contactID = session.get("contactID").get("meta").get("value");
+// VARIABLES
+departmentID = "161824000000007061";
+layout = "Key Code";
+status = "Open";
+orgID = 20096674714;
+account_params = Map();
+Odoo_ID = contact_info.get("id");
+account_params.put("accountName",contact_info.get("name").toString());
+account_params.put("email",contact_info.get("email"));
+account_params.put("phone",contact_info.get("phone"));
+account_params.put("cf",{"cf_odoo_id":Odoo_ID,"cf_comercial":contact_info.get("user_id").get(1),"cf_verificado_odoo":"true"});
+response_creation = zoho.desk.create(orgID,"accounts",account_params,"salesiqzohodesk");
+info response_creation;
+accountID = response_creation.get("id");
+if(session.get("contactID").get("meta").get("value") != "false")
+{
+	relate_contact = zoho.desk.update(orgID,"contacts",contactID,{"accountId":accountID},"salesiqzohodesk");
+}
+return {"accountID":accountID,"odooID":Odoo_ID.toString()};

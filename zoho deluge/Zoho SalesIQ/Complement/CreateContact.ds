@@ -1,0 +1,23 @@
+if(session.containsKey("accountID"))
+{
+	accountID = session.get("accountID").get("value");
+}
+orgID = 20096674714;
+contactInfo = Map();
+response_account = zoho.desk.getRecordById(orgID,"accounts",accountID,"salesiqzohodesk");
+info response_account;
+contactInfo.put("lastName",response_account.get("accountName"));
+contactInfo.put("mobile",response_account.get("phone"));
+contactInfo.put("email",response_account.get("email"));
+contactInfo.put("accountId",accountID);
+Odoo_ID = response_account.get("customFields").get("Odoo_ID");
+Odoo_URL = "https://www.key-code.com/web#id=" + Odoo_ID + "&menu_id=276&cids=1&action=417&model=res.partner&view_type=form";
+contactInfo.put("cf",{"cf_odoo_id":Odoo_ID,"cf_verificado_odoo":"true","cf_comercial":response_account.get("customFields").get("Comercial"),"cf_url_contacto_odoo":Odoo_URL});
+response_contact = zoho.desk.create(orgID,"contacts",contactInfo,"salesiqzohodesk");
+info response_contact;
+contactID = response_contact.get("id");
+response = Map();
+response.put("contactID",contactID);
+response.put("odooID",Odoo_ID);
+relate_contact = zoho.desk.update(orgID,"contacts",contactID,{"accountId":accountID},"salesiqzohodesk");
+return response;
