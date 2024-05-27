@@ -2,6 +2,7 @@ import requests
 import json
 from env_vars_Zoho import *
 
+
 def auth_token(grant_token, client_secret, client_id):
     URL = "https://accounts.zoho.eu/oauth/v2/token"
     code_token = grant_token
@@ -12,7 +13,6 @@ def auth_token(grant_token, client_secret, client_id):
         "client_secret": f"{client_secret}",
         "code": f"{code_token}",
     }
-    # print(headers)
     req = requests.post(url=URL, data=headers)
     print(req)
     try:
