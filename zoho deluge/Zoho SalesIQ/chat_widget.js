@@ -13,4 +13,3 @@ s.defer = true;
 s.src = "https://salesiq.zohopublic.eu/widget";
 t = d.getElementsByTagName("script")[0];
 t.parentNode.insertBefore(s, t);
-
