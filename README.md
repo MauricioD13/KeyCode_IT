@@ -1,5 +1,5 @@
-# Zoho_KeyCode
-Code for all custom functions of Zoho
+# KeyCode IT
+Code use to perfom functions to automate, organize and configure KeyCode tech tools that are being used
 
 ## Zoho Deluge
 
