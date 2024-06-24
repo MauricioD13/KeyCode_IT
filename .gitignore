@@ -174,3 +174,9 @@ Test_toImport.csv
 *.csv
 *.json
 Automatizacion
+key_recommendation/vars.py
+key_recommendation/chromedriver-linux64/
+key_recommendation/.env/
+key_recommendation/__pycache__/
+key_recommendation/playwright/.auth/
+Flujo_ventas.drawio
