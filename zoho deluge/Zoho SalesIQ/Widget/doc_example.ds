@@ -1,0 +1,48 @@
+info form;
+action = form.get("action");
+if("cancel".equals(action))
+{
+	return {"type":"banner","status":"success","text":"Form closed"};
+}
+formName = form.get("name");
+values = form.get("values");
+response = Map();
+listing = {{"name":"HO340WA52EIPHTFUR","title":"₹ 37,900","text":"Tiago Engineered Wood Four Door Wardrobe in Wenge Colour by HomeTown","subtext":"Shipped | Jun 28, 2020","link":"https://www.zylkerfurnitures.com/tiago-engineered-wood-four-door-wardrobe-in-wenge-colour-by-hometown/sku/HO340WA52EIPHTFUR","link_hint":"Click to view product"},{"name":"HO340FU60GNZHTFUR","title":"₹ 11,900","text":"Paris Fabric Office Chair in Black Colour by HomeTown","subtext":"Delivered | Jun 3, 2020","link":"https://www.zylkerfurnitures.com/paris-fabric-office-chair-in-black-colour-by-hometown/sku/HO340FU60GNZHTFUR","link_hint":"Click to view product"},{"name":"HO340FU28GPFHTFUR","title":"₹ 18,995","text":"Castle Engineered Wood Study Table in Highgloss White & Pink Colour by HomeTown","subtext":"Delivered | Apr 14, 2020","link":"https://www.zylkerfurnitures.com/castle-engineered-wood-study-table-in-highgloss-white-and-pink-colour-by-hometown/sku/HO340FU28GPFHTFUR","link_hint":"Click to view product"},{"name":"EA921CR91NXCHTFUR","title":"₹ 399","text":"Floral Print Polyester Door Curtain in Brown Colour by Easy Life","subtext":"Delivered | Apr 3, 2020","link":"https://www.zylkerfurnitures.com/floral-print-polyester-door-curtain-in-brown-colour-by-easy-life/sku/EA921CR91NXCHTFUR","link_hint":"Click to view product"},{"name":"HO340KD18ZKJINDFUR","title":"₹ 2,399","text":"Living Essence Oil And Vinegar Bottle With Salt And Pepper Storage 5 Pcs","subtext":"Returned | Apr 3, 2020","link":"https://www.zylkerfurnitures.com/living-essence-oil-and-vinegar-bottle-with-salt-and-pepper-storage-5-pcs/sku/HO340KD18ZKJINDFUR","link_hint":"Click to view product"},{"name":"HO340KD19FDCHTFUR","title":"₹ 8,995","text":"Vento Metal Dining Chair Set of Six in Black Colour by HomeTown","subtext":"Delivered | Mar 1, 2020","link":"https://www.zylkerfurnitures.com/vento-metal-dining-chair-set-of-six-in-black-colour-by-hometown/sku/HO340KD19FDCHTFUR","link_hint":"Click to view product"},{"name":"HO340SO62AENHTFUR","title":"₹ 43,900","text":"Rhea Fabric Three Seater sofa in Brown Colour by HomeTown","subtext":"Delivered | Jan 23, 2020","link":"https://www.zylkerfurnitures.com/rhea-fabric-three-seater-sofa-in-brown-colour-by-hometown/sku/HO340SO62AENHTFUR","link_hint":"Click to view product"}};
+if("zylkermember".equals(formName))
+{
+	name = values.get("name").get("value");
+	membership = values.get("membership").get("value").get("value");
+	email = values.get("email").get("value");
+	if(values.containKey("emailSubscription"))
+	{
+		// write the code to update subscription in server if required
+	}
+	metrix = {{"label":"Points","value":"382"},{"label":"Membership","value":membership.toUpperCase()},{"label":"Expires","value":"Dec 6, 20"}};
+	metricSection = {"name":"levelSection","layout":"metric","title":"Customer Level","data":metrix,"actions":{{"label":"Upgrade / Downgrade","name":"changeLevel"},{"label":"Cancel","name":"cancel"}},"reference_id":membership};
+	response.put("type","sections_edit");
+	response.put("sections",{metricSection});
+}
+else if("returnproducts".equals(formName))
+{
+	itemMeta = values.get("item").get("meta");
+	itemVal = itemMeta.get("value");
+	refreshedList = Collection();
+	returningGoods = Collection();
+	for each  listingElem in listing
+	{
+		if(itemVal.equals(listingElem.get("name")))
+		{
+			returningElem = listingElem;
+			returningElem.remove("subtext");
+			returningGoods.add(returningElem);
+			listingElem.put("subtext","Returned | " + zoho.currentdate.getDate());
+		}
+		refreshedList.add(listingElem);
+	}
+	returningSection = {"name":"returned","layout":"listing","title":"REQUESTS TO RETURN","data":returningGoods};
+	listingSection = {"name":"purchases","layout":"listing","search":true,"navigate":true,"title":"Recent Purchases","data":refreshedList};
+	response.put("type","sections_edit");
+	response.put("sections",{returningSection,listingSection});
+	return response;
+}
+return response;

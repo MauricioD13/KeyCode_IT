@@ -1,0 +1,227 @@
+response = Map();
+info target;
+actionType = action.get("type");
+listing = {{"name":"HO340WA52EIPHTFUR","title":"₹ 37,900","text":"Tiago Engineered Wood Four Door Wardrobe in Wenge Colour by HomeTown","subtext":"Shipped | Jun 28, 2020","link":"https://www.zylkerfurnitures.com/tiago-engineered-wood-four-door-wardrobe-in-wenge-colour-by-hometown/sku/HO340WA52EIPHTFUR","link_hint":"Click to view product"},{"name":"HO340FU60GNZHTFUR","title":"₹ 11,900","text":"Paris Fabric Office Chair in Black Colour by HomeTown","subtext":"Delivered | Jun 3, 2020","link":"https://www.zylkerfurnitures.com/paris-fabric-office-chair-in-black-colour-by-hometown/sku/HO340FU60GNZHTFUR","link_hint":"Click to view product"},{"name":"HO340FU28GPFHTFUR","title":"₹ 18,995","text":"Castle Engineered Wood Study Table in Highgloss White & Pink Colour by HomeTown","subtext":"Delivered | Apr 14, 2020","link":"https://www.zylkerfurnitures.com/castle-engineered-wood-study-table-in-highgloss-white-and-pink-colour-by-hometown/sku/HO340FU28GPFHTFUR","link_hint":"Click to view product"},{"name":"EA921CR91NXCHTFUR","title":"₹ 399","text":"Floral Print Polyester Door Curtain in Brown Colour by Easy Life","subtext":"Delivered | Apr 3, 2020","link":"https://www.zylkerfurnitures.com/floral-print-polyester-door-curtain-in-brown-colour-by-easy-life/sku/EA921CR91NXCHTFUR","link_hint":"Click to view product"},{"name":"HO340KD18ZKJINDFUR","title":"₹ 2,399","text":"Living Essence Oil And Vinegar Bottle With Salt And Pepper Storage 5 Pcs","subtext":"Returned | Apr 3, 2020","link":"https://www.zylkerfurnitures.com/living-essence-oil-and-vinegar-bottle-with-salt-and-pepper-storage-5-pcs/sku/HO340KD18ZKJINDFUR","link_hint":"Click to view product"},{"name":"HO340KD19FDCHTFUR","title":"₹ 8,995","text":"Vento Metal Dining Chair Set of Six in Black Colour by HomeTown","subtext":"Delivered | Mar 1, 2020","link":"https://www.zylkerfurnitures.com/vento-metal-dining-chair-set-of-six-in-black-colour-by-hometown/sku/HO340KD19FDCHTFUR","link_hint":"Click to view product"},{"name":"HO340SO62AENHTFUR","title":"₹ 43,900","text":"Rhea Fabric Three Seater sofa in Brown Colour by HomeTown","subtext":"Delivered | Jan 23, 2020","link":"https://www.zylkerfurnitures.com/rhea-fabric-three-seater-sofa-in-brown-colour-by-hometown/sku/HO340SO62AENHTFUR","link_hint":"Click to view product"}};
+if("button".equals(actionType))
+{
+	buttonName = action.get("name");
+	if("cancel".equals(buttonName))
+	{
+		response.put("type","sections_edit");
+		metrix = {{"label":"Points","value":"382"},{"label":"Membership","value":"-"},{"label":"Expires","value":"-"}};
+		metricSection = {"name":"levelSection","layout":"metric","title":"Customer Level","data":metrix,"actions":{{"label":"Upgrade / Downgrade","name":"changeLevel"}},"reference_id":"-"};
+		response.put("sections",{metricSection});
+		response.put("success_banner","Membership cancelled successfully");
+		return response;
+	}
+	else if("changeLevel".equals(buttonName))
+	{
+		countries = {{"name":"Afghanistan","code":"AF"},{"name":"Albania","code":"AL"},{"name":"Algeria","code":"DZ"},{"name":"Antarctica","code":"AQ"},{"name":"Argentina","code":"AR"},{"name":"Australia","code":"AU"},{"name":"Austria","code":"AT"},{"name":"Bahamas","code":"BS"},{"name":"Bangladesh","code":"BD"},{"name":"Belgium","code":"BE"},{"name":"Bhutan","code":"BT"},{"name":"Brazil","code":"BR"},{"name":"Bulgaria","code":"BG"},{"name":"Cambodia","code":"KH"},{"name":"Cameroon","code":"CM"},{"name":"Canada","code":"CA"},{"name":"Chile","code":"CL"},{"name":"China","code":"CN"},{"name":"Congo","code":"CG"},{"name":"Costa Rica","code":"CR"},{"name":"Cuba","code":"CU"},{"name":"Denmark","code":"DK"},{"name":"Egypt","code":"EG"},{"name":"Finland","code":"FI"},{"name":"France","code":"FR"},{"name":"Georgia","code":"GE"},{"name":"Germany","code":"DE"},{"name":"Greece","code":"GR"},{"name":"Greenland","code":"GL"},{"name":"Hong Kong","code":"HK"},{"name":"Hungary","code":"HU"},{"name":"Iceland","code":"IS"},{"name":"India","code":"IN"},{"name":"Indonesia","code":"ID"},{"name":"Iran, Islamic Republic Of","code":"IR"},{"name":"Iraq","code":"IQ"},{"name":"Ireland","code":"IE"},{"name":"Isle of Man","code":"IM"},{"name":"Israel","code":"IL"},{"name":"Italy","code":"IT"},{"name":"Jamaica","code":"JM"},{"name":"Japan","code":"JP"},{"name":"Kuwait","code":"KW"},{"name":"Malaysia","code":"MY"},{"name":"Mexico","code":"MX"},{"name":"Nepal","code":"NP"},{"name":"Netherlands","code":"NL"},{"name":"New Zealand","code":"NZ"},{"name":"Pakistan","code":"PK"},{"name":"Philippines","code":"PH"},{"name":"Poland","code":"PL"},{"name":"Portugal","code":"PT"},{"name":"Singapore","code":"SG"},{"name":"Slovakia","code":"SK"},{"name":"Slovenia","code":"SI"},{"name":"Sri Lanka","code":"LK"},{"name":"Sweden","code":"SE"},{"name":"Switzerland","code":"CH"},{"name":"Turkey","code":"TR"},{"name":"United Arab Emirates","code":"AE"},{"name":"United Kingdom","code":"GB"},{"name":"United States","code":"US"},{"name":"United States Minor Outlying Islands","code":"UM"},{"name":"Yemen","code":"YE"},{"name":"Zimbabwe","code":"ZW"}};
+		countriesList = List();
+		count = 0;
+		for each  country in countries
+		{
+			countryName = country.get("name");
+			code = country.get("code");
+			Country = {"label":countryName,"value":code};
+			if(count < 8)
+			{
+				countriesList.add(Country);
+			}
+			count = count + 1;
+		}
+		response.put("type","form");
+		response.put("title","Membership form");
+		response.put("name","zylkermember");
+		response.put("action",{"type":"invoke.function","name":"zylkerfurnitures"});
+		response.put("hint","Upgrade / Downgrade membership form");
+		response.put("button_label","Submit");
+		response.put("trigger_on_cancel",true);
+		inputs = Collection();
+		emailSubscription = {"type":"checkbox","name":"emailSubscription","label":"Check this option if the customer wants to subscribe to our emails","trigger_on_change":true,"options":{{"label":"Yes","value":"1"}},"value":"1"};
+		emailField = {"type":"email","name":"email","label":"Enter Customer Email here","placeholder":"email here","value":"tonysmiles@gmail.com","max_length":100,"min_length":10};
+		info target;
+		section_reference_id = target.get("section_reference_id");
+		if("-".equals(section_reference_id))
+		{
+			section_reference_id = "gold";
+		}
+		info section_reference_id;
+		membershipType = {"type":"radio","name":"membership","label":"Select the membership type","mandatory":true,"value":section_reference_id,"options":{{"label":"SILVER","value":"silver"},{"label":"GOLD","value":"gold"},{"label":"PLATINUM","value":"platinum"}}};
+		nameField = {"type":"text","name":"name","label":"Enter Customer Name here","placeholder":"name","value":"Tony Stark","mandatory":true,"max_length":100,"min_length":10};
+		emailTypes = {"type":"checkbox","name":"emailTypes","label":"Check the mails that you want to receive","options":{{"label":"Discounts","value":"discounts"},{"label":"Meetings","value":"meetings"},{"label":"Newsletter","value":"news"}},"value":"news"};
+		countryField = {"type":"dynamic_select","name":"country","label":"Select the country. You can search for any","options":countriesList,"placeholder":"Type to search for a country"};
+		inputs.add(nameField);
+		inputs.add(emailField);
+		inputs.add(countryField);
+		inputs.add(membershipType);
+		inputs.add(emailSubscription);
+		inputs.add(emailTypes);
+		response.put("inputs",inputs);
+		return response;
+	}
+	else if("addReturnRequest".equals(buttonName))
+	{
+		response.put("type","form");
+		response.put("title","Form to raise request to return purchased good");
+		response.put("name","returnproducts");
+		response.put("action",{"type":"invoke.function","name":"zylkerfurnitures"});
+		response.put("hint","Add request for returning goods");
+		response.put("button_label","Add request");
+		response.put("trigger_on_cancel",true);
+		inputs = Collection();
+		options = Collection();
+		for each  listingElem in listing
+		{
+			if(listingElem.get("subtext").contains("Delivered"))
+			{
+				options.add({"label":listingElem.get("text"),"value":listingElem.get("name")});
+			}
+		}
+		selectItem = {"type":"select","name":"item","label":"Select the item to return","mandatory":true,"trigger_on_change":true,"options":options,"value":options.get(0).get("value")};
+		inputs.add(selectItem);
+		priceInfo = {"type":"text","name":"price","disabled":true,"label":"Price","value":listing.get(0).get("title")};
+		inputs.add(priceInfo);
+		response.put("inputs",inputs);
+	}
+	else if("cancelOrder".equals(buttonName))
+	{
+		itemId = target.get("section_reference_id");
+		for each  listingElem in listing
+		{
+			if(itemId.equals(listingElem.get("name")))
+			{
+				response.put("type","sections_edit");
+				infoSection = {"reference_id":listingElem.get("name") + "_cancelled","name":"purchaseInfo","title":"Item Details","layout":"info","data":{{"label":"Item Name","value":listingElem.get("text")},{"label":"Net Price","value":listingElem.get("title")},{"label":"Status","value":"Cancelled"}}};
+				response.put("sections",{infoSection});
+				response.put("success_banner","Item " + listingElem.get("name") + " cancelled successfully");
+				response.put("refresh_section",true);
+				return response;
+			}
+		}
+	}
+}
+else if("search".equals(actionType))
+{
+	searchText = action.get("text");
+	if("".equals(searchText))
+	{
+		listingSection = {"name":"purchases","layout":"listing","search":true,"navigate":true,"title":"Recent Purchases","data":listing};
+	}
+	else
+	{
+		searchResultListing = Collection();
+		for each  listingElem in listing
+		{
+			text = listingElem.get("text");
+			if(text.containsIgnoreCase(searchText))
+			{
+				searchResultListing.add(listingElem);
+			}
+		}
+		if(searchResultListing.isEmpty())
+		{
+			listingSection = {"name":"purchases","layout":"listing","search":true,"title":"Recent Purchases","nodata_text":"No results found"};
+		}
+		else
+		{
+			listingSection = {"name":"purchases","layout":"listing","search":true,"navigate":true,"title":"Recent Purchases","data":searchResultListing};
+		}
+	}
+	response.put("type","sections_edit");
+	response.put("sections",{listingSection});
+	return response;
+}
+else if("navigate".equals(actionType))
+{
+	elementName = action.get("name");
+	sectionName = target.get("section_name");
+	if("purchases".equals(sectionName))
+	{
+		for each  listingElem in listing
+		{
+			if(elementName.equals(listingElem.get("name")))
+			{
+				itemStatus = listingElem.get("subtext").toList(" | ").get(0);
+				response.put("type","section_navigate");
+				infoSection = {"reference_id":listingElem.get("name"),"name":"purchaseInfo","title":"Item Details","layout":"info","data":{{"label":"Item Name","value":listingElem.get("text")},{"label":"Net Price","value":listingElem.get("title")},{"label":"Status","value":itemStatus}}};
+				if("Shipped".equals(itemStatus))
+				{
+					infoSection.put("actions",{{"label":"Cancel order","name":"cancelOrder"}});
+				}
+				response.put("section",infoSection);
+				response.put("refresh_section",true);
+				return response;
+			}
+		}
+	}
+}
+else if("navigate_back".equals(actionType))
+{
+	refId = target.get("section_reference_id");
+	refIdArray = refId.toList("_");
+	itemId = refIdArray.get(0);
+	if(refId.contains("cancelled"))
+	{
+		refreshedListing = Collection();
+		for each  listingElem in listing
+		{
+			if(itemId.equals(listingElem.get("name")))
+			{
+				itemStatusDate = listingElem.get("subtext").toList(" | ").get(1);
+				listingElem.put("subtext","Cancelled | " + itemStatusDate);
+			}
+			refreshedListing.add(listingElem);
+		}
+		listingSection = {"name":"purchases","layout":"listing","search":true,"navigate":true,"title":"Recent Purchases","data":refreshedListing};
+		response.put("type","section_navigate");
+		response.put("section",listingSection);
+		return response;
+	}
+	else
+	{
+		listingSection = {"name":"purchases","layout":"listing","search":true,"navigate":true,"title":"Recent Purchases","data":listing};
+		response.put("type","section_navigate");
+		response.put("section",listingSection);
+		return response;
+	}
+}
+if(action.containsKey("text"))
+{
+	searchText = action.get("text");
+	response.put("type","sections_edit");
+	response.put("success_banner","List updated successfully");
+	listing = {{"title":"345672 Closed","text":"WHO Tip 4: Choose the fields to set widget preview supporort and keep your customer base intact with SalesIQ's Automation.","subtext":"Jeri John | Apr 2, 2020","link":"https://help.zoho.com/support/zohocorp/ShowHomePage.do#Cases/dv/c9ef002e8a95f2cf2a08b77109730d7e"},{"title":"32323232 Closed","text":"Provide open customer support and keep your customer base intact with SalesIQ's Automation features.","subtext":"Jeri John | Apr 4, 2020","link":"https://help.zoho.com/support/zohocorp/ShowHomePage.do#Cases/dv/c9ef002e8a95f2cf2a08b77109730d7e"}};
+	listingSection = {"name":"listing","layout":"listing","search":true,"title":"Listing Section","data":listing,"actions":{{"label":"Remove last","name":"changeList"}}};
+	sections = {listingSection};
+	response.put("sections",sections);
+	return response;
+}
+buttonName = action.get("name");
+if("metrixBtn".equals(buttonName))
+{
+	response.put("type","banner");
+	//response.put("status", "failure");
+	response.put("status","success");
+	response.put("text","Metrix button invoked successfully");
+	//response.put("text", "Metrix button invoked successfully error shown");
+}
+else if("nameChange".equals(buttonName))
+{
+	response.put("type","sections_edit");
+	fieldSet = {{"label":"Contact Owner","value":"Vijay"}};
+	fieldsetSection = {"name":"fieldset","layout":"fieldset","title":"Field set","data":fieldSet,"actions":{{"label":"Change name","name":"nameChange"}}};
+	sections = {fieldsetSection};
+	response.put("sections",sections);
+	response.put("success_banner","Name changes successfully");
+}
+else if("changeList".equals(buttonName))
+{
+	response.put("type","sections_edit");
+	response.put("success_banner","List updated successfully");
+	listing = {{"title":"345672 Closed","text":"WHO Tip 4: Choose the fields to set widget preview supporort and keep your customer base intact with SalesIQ's Automation.","subtext":"Jeri John | Apr 2, 2020","link":"https://help.zoho.com/support/zohocorp/ShowHomePage.do#Cases/dv/c9ef002e8a95f2cf2a08b77109730d7e"}};
+	listingSection = {"name":"listing","layout":"listing","search":true,"title":"Listing Section","data":listing};
+	sections = {listingSection};
+	response.put("sections",sections);
+}
+return response;

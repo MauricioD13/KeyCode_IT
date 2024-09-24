@@ -1,0 +1,29 @@
+
+$o-user-color-palette: map-merge($o-user-color-palette, o-map-omit((
+    'o-cc1-bg': 'white',
+    'o-cc5-bg': #1A2855,
+    'menu': 4,
+    'menu-custom': 'o-color-1',
+    'o-cc5-link': #243E90,
+    'o-cc5-btn-primary': '600',
+    'copyright': 5,
+    'copyright-custom': 'NULL',
+    'footer': 2,
+    'footer-custom': 'NULL',
+    'o-cc1-link': 'o-color-2',
+    'o-cc1-btn-primary': '600',
+    'o-cc1-btn-secondary': 'o-color-1',
+    'o-cc2-link': '600',
+    'o-cc2-btn-primary': '600',
+    'o-cc3-link': '900',
+    'o-cc3-btn-primary': #FF0000,
+    'o-color-1': #243E90,
+    'o-color-2': #343A40,
+    'o-cc4-link': 'o-color-3',
+    'o-cc4-btn-primary': '600',
+    'o-cc4-btn-secondary': '400',
+    'o-cc2-bg': 'o-color-3',
+    'o-cc2-text': 'o-color-3',
+    // -- hook --
+)));
+
