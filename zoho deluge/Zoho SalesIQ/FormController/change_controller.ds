@@ -1,0 +1,26 @@
+formValues = form.get("values");
+formName = form.get("name");
+response = Map();
+actions = Collection();
+fieldChanged = target.get("name");
+fieldValueSet = formValues.get(fieldChanged);
+if("form_booking".equals(formName))
+{
+	consultation_id = formValues.get("consultation").get("value");
+	time_value = now.addMinutes(5);
+	time_now = toString(time_value,"MMM dd, YYY");
+	//service Id, staff id, time, connection
+	operator = formValues.get("operator").get("value").get("value");
+	response = zoho.bookings.getAvailableSlots(consultation_id.get("value"),operator,time_now,"salesiqbookings");
+	slots = response.get("response").get("returnvalue").get("data");
+	info slots;
+	slot_options = List();
+	for each  slot in slots
+	{
+		slot_options.add({"label":slot,"value":slot});
+	}
+	slotSelectField = {"type":"select","name":"time_slot","label":"Horarios disponibles","placeholder":"Horario disponible","mandatory":true,"options":slot_options};
+	actions.add({"type":"add_after","name":"time_slot","input":slotSelectField});
+}
+response = {"type":"form_modification","actions":actions};
+return response;

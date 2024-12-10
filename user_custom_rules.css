@@ -1,0 +1,128 @@
+//
+// This file is meant to regroup your design customizations. For example, doing
+// this will separate your footer with a dotted border using your primary color.
+//
+// footer {
+//     border-top: 5px dotted map-get($theme-colors, 'primary');
+// }
+//
+/*TEXTO HEADER*/
+header {
+  font-size: 15px;
+}
+/*LOGO HEADER*/
+header .navbar-brand.logo img {
+  object-fit: contain;
+  display: block;
+  width: auto;
+  height: 4rem;
+}
+/*MARGIN MENU*/
+.ms-auto {
+  margin-left: 0 !important;
+}
+
+/*DROP DONW MEGAMENU*/
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1rem;
+  clear: both;
+  font-weight: 400;
+  color: #FFFFFF;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: #1A2855;
+  border: 0;
+  
+}
+
+.o_cc .dropdown-menu .dropdown-item, .o_cc .o_dropdown_menu .dropdown-item, #wrapwrap.o_header_overlay > header:not(.o_header_affixed):not(.o_header_sidebar):not(.o_top_menu_collapse_shown) > .navbar .dropdown-menu .dropdown-item, #wrapwrap.o_header_overlay > header:not(.o_header_affixed):not(.o_header_sidebar):not(.o_top_menu_collapse_shown) > .navbar .o_dropdown_menu .dropdown-item, .o_footer .dropdown-menu .dropdown-item, .o_footer .o_dropdown_menu .dropdown-item, .navbar-light .dropdown-menu .dropdown-item, .navbar-light .o_dropdown_menu .dropdown-item, .o_cc .dropdown-menu .dropdown-item h6, .o_cc .o_dropdown_menu .dropdown-item h6, #wrapwrap.o_header_overlay > header:not(.o_header_affixed):not(.o_header_sidebar):not(.o_top_menu_collapse_shown) > .navbar .dropdown-menu .dropdown-item h6, #wrapwrap.o_header_overlay > header:not(.o_header_affixed):not(.o_header_sidebar):not(.o_top_menu_collapse_shown) > .navbar .o_dropdown_menu .dropdown-item h6, .o_footer .dropdown-menu .dropdown-item h6, .o_footer .o_dropdown_menu .dropdown-item h6, .navbar-light .dropdown-menu .dropdown-item h6, .navbar-light .o_dropdown_menu .dropdown-item h6, .o_cc .dropdown-menu .dropdown-item .h6, .o_cc .o_dropdown_menu .dropdown-item .h6, #wrapwrap.o_header_overlay > header:not(.o_header_affixed):not(.o_header_sidebar):not(.o_top_menu_collapse_shown) > .navbar .dropdown-menu .dropdown-item .h6, #wrapwrap.o_header_overlay > header:not(.o_header_affixed):not(.o_header_sidebar):not(.o_top_menu_collapse_shown) > .navbar .o_dropdown_menu .dropdown-item .h6, .o_footer .dropdown-menu .dropdown-item .h6, .o_footer .o_dropdown_menu .dropdown-item .h6, .navbar-light .dropdown-menu .dropdown-item .h6, .navbar-light .o_dropdown_menu .dropdown-item .h6, .o_colored_level .o_cc .dropdown-menu .dropdown-item, .o_colored_level .o_cc .dropdown-menu .dropdown-item h6 {
+  color: #FFFFFF !important;
+}
+
+.o_mega_menu {
+    width: 100%;
+    /* padding: 0; */
+    margin-top: 0px !important;
+    border-radius: 0;
+    background-clip: unset;
+    background-color: transparent;
+    border: 0px; 
+   padding-top: 15px;
+}
+
+/*DROP DOWN LENGUAJE*/
+
+.dropdown-menu-end{
+  background-color: #1A2855;
+}
+
+/*DROP DOWN PANTALLA MINIMA*/
+
+.dropdown-menu, .o_dropdown_menu {
+  position: absolute;
+  z-index: 1000;
+  display: none;
+  min-width: 10rem;
+  padding: 0.5rem 0;
+  margin: 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-color: #1A2855;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.4rem;
+}
+
+/*DROP DOWN SEARCH BAR*/
+
+.s_searchbar_input .dropdown-item {
+display: block;
+width: 100%;
+padding: 0.25rem 1rem;
+clear: both;
+font-weight: 400;
+color: #1a2855;
+text-align: inherit;
+white-space: nowrap;
+background-color: #FFFFFF;
+border: 0;
+}
+
+.s_searchbar_input .o_dropdown_menu {
+  color: #212529;
+  background-color: #FFFFFF;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.4rem;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+color: #1e2125;
+background-color: #E9ECEF;
+}
+
+/*SEARCH BAR FORM*/
+
+.table-responsive .dropdown-item {
+display: block;
+width: 100%;
+/*adding: 0.25rem 1rem;*/
+clear: both;
+font-weight: 400;
+color: #1a2855;
+text-align: inherit;
+/*white-space: nowrap;*/
+background-color: #FFFFFF;
+border: 0;
+}
+
+.table-responsive .dropdown-item:hover, .dropdown-item:focus {
+color: #1e2125;
+background-color: #E9ECEF;
+}
+

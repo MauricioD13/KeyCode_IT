@@ -1,0 +1,59 @@
+response = Map();
+response.put("type","widget_detail");
+phone_number = context.get("data").get("phone");
+sections = {};
+// Request to fetch the appointments attach to the customer phone number
+json_params = Map();
+json_params.put("customer_phone_number",phone_number.toString());
+json_params.put("status","UPCOMING");
+data_params = Map();
+data_params.put("data",json_params);
+// Fetch appointments pending
+response_appointments = invokeurl
+[
+	url :"https://www.zohoapis.eu/bookings/v1/json/fetchappointment"
+	type :POST
+	parameters:data_params
+	connection:"salesiqbookings"
+];
+aux = response_appointments.get("response").get("returnvalue").get("response");
+// Fill the widgets section data with the response info
+if(aux == "No Match Found")
+{
+	appointments_pending = {{"name":"no_match","title":"No hay reuniones pendientes","text":"No hay reuniones pendientes"}};
+}
+else
+{
+	appointments_pending = {};
+	for each  appointment in aux
+	{
+		start_link = "No disponible";
+		try
+		{
+			start_link = appointment.get("meeting_info").get("start_link");
+		}
+		catch (e)
+		{
+			start_link = "No disponible";
+		}
+		if(start_link != "No disponible")
+		{
+			appointments_pending.add({"name":"meeting","title":"Servicio: " + appointment.get("service_name"),"text":"Horario: " + appointment.get("start_time"),"subtext":"Operador: " + appointment.get("staff_name"),"link":start_link,"link_hint":"link de inicio"});
+		}
+		else
+		{
+			appointments_pending.add({"name":"meeting","title":"Servicio: " + appointment.get("service_name"),"text":"Horario: " + appointment.get("start_time"),"subtext":"Operador: " + appointment.get("staff_name")});
+		}
+	}
+}
+meetingSection = {"name":"bookingsSection","layout":"listing","title":"Citas agendadas","data":appointments_pending};
+// Service section
+services_list = {{"label":"Ver reuniones agendadas en","value":"https://bookings.zoho.eu/#/app/appointments"}};
+serviceOptions = {"name":"serviceSection","layout":"info","title":"Gestión de citas","data":services_list};
+appointment = {{"label":"Link para el cliente","value":"-"},{"label":"Link para el operador","value":"-"},{"label":"Operador","value":"-"},{"label":"Horario","value":"-"}};
+newAppointment = {"name":"appointmentSection","layout":"info","title":"Información de la cita","data":appointment,"actions":{{"label":"Agendar reunion","name":"booking"}},"reference_id":"1"};
+sections.add(serviceOptions);
+sections.add(newAppointment);
+sections.add(meetingSection);
+response.put("sections",sections);
+return response;

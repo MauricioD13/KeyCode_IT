@@ -1,0 +1,41 @@
+action = form.get("action");
+if("cancel".equals(action))
+{
+	return {"type":"banner","status":"failure","text":"Formulario cerrado, reunion no creada"};
+}
+formName = form.get("name");
+values = form.get("values");
+info operator;
+response = Map();
+if("form_booking".equals(formName))
+{
+	// Get form values
+	email = values.get("email").get("value");
+	phone = values.get("phone").get("value");
+	operator = values.get("operator").get("value").get("value");
+	consultation_id = values.get("consultation").get("value").get("value");
+	time_slot = values.get("time_slot").get("value").get("value");
+	customer_name = values.get("customer_name").get("value");
+	// Format date to bookings API parameters
+	time_value = now;
+	date_value = toString(time_value,"dd-MMM-yyyy");
+	customer_info = {"name":customer_name,"email":email,"phone_number":phone};
+	appointment_time = date_value + " " + time_slot;
+	// Book appointment
+	response_appointment = zoho.bookings.createAppointment(consultation_id,appointment_time,customer_info,operator,"Europe/Madrid",true,"salesiqbookings");
+	if(response_appointment.get("response").get("returnvalue").get("message") == "slot not available")
+	{
+		response = {"type":"form_error","text":"Slot not found","inputs":{"time_slot":"Horario no disponible"}};
+	}
+	else
+	{
+		appointment_info = response_appointment.get("response").get("returnvalue");
+		// Process response and info of the appointment
+		appointment = {{"label":"Link para el cliente","value":appointment_info.get("meeting_info").get("join_link")},{"label":"Link para el operador","value":appointment_info.get("meeting_info").get("start_link")},{"label":"Operador","value":appointment_info.get("staff_name")},{"label":"Horario","value":appointment_time}};
+		newAppointment = {"name":"appointmentSection","layout":"info","title":"Información de la cita","data":appointment,"actions":{{"label":"Agendar reunion","name":"booking"}}};
+		response.put("type","sections_edit");
+		response.put("success_banner","Reunión creada exitosamente");
+		response.put("sections",{newAppointment});
+	}
+}
+return response;

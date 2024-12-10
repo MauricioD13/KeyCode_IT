@@ -1,0 +1,55 @@
+phone_number = session.get("phone").get("meta").get("value");
+search_criteria = "Movil==".concat(phone_number);
+raw_query = zoho.creator.getRecords("keycode","soporte-contactos","Contactos_Report1",search_criteria,0,2,"salesiqcreator");
+if(raw_query.get("code") == 3000)
+{
+	name_lookup = raw_query.get("data").get("0").get("Compa_ia_Cuentas");
+	name = name_lookup.get("display_value").toList("-");
+	return {"message":"Número registrado","customerName":name.get(1)};
+}
+raw_query = zoho.creator.getRecords("keycode","soporte-contactos","Moviles_pendientes_Report",search_criteria,0,2,"salesiqcreator");
+if(raw_query.get("code") == 3100)
+{
+	// If no record is find then it's created in Zoho Creato DB
+	pass = true;
+}
+else
+{
+	query = raw_query.get("data").get("0");
+	pass = false;
+}
+if(pass)
+{
+	// Add record if the mobile number is new in the system
+	info "entre";
+	dataMap = Map();
+	dataMap.put("Movil",phone_number);
+	dataMap.put("Tickets",2);
+	dataMap.put("Bloqueado",False);
+	otherParams = Map();
+	query_create = zoho.creator.createRecord("keycode","soporte-contactos","Moviles_pendientes",dataMap,otherParams,"salesiqcreator");
+	message_query = {"message":"Número de móvil desconocido, llena el formulario para registrar tu número de móvil y poder acceder al soporte técnico posteriormente. Te quedan 2 tickets de acceso sin registrar tu número"};
+}
+else
+{
+	blocked = query.get("Bloqueado");
+	if(blocked == true)
+	{
+		message_query = {"message":"Tu número se encuentra bloqueado. Te has quedado sin tickets de acceso sin registro"};
+	}
+	else
+	{
+		// Get amount of ticket and update this amount
+		tickets = query.get("Tickets");
+		ID = query.get("ID");
+		otherParams = Map();
+		tickets = tickets.toNumber() - 1;
+		updateMap = Map();
+		updateMap.put("Tickets",tickets.toString());
+		register_update = zoho.creator.updateRecord("keycode","soporte-contactos","Moviles_pendientes_Report",ID,updateMap,otherParams,"salesiqcreator");
+		info register_update;
+		aux_message = "Número de móvil desconocido, te quedan ".concat(tickets.toString());
+		message_query = {"message":aux_message.concat(" tickets disponibles")};
+	}
+}
+return message_query;

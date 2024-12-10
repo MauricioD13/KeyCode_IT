@@ -168,9 +168,6 @@ norm_files/*.csv
 .env_wsl/
 env_vars_Odoo.py
 env_vars_Zoho.py
-test.json
-Sales_toImport.csv
-Test_toImport.csv
 *.csv
 *.json
 Automatizacion
